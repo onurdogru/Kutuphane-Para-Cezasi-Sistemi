@@ -1,0 +1,53 @@
+﻿@model ParaCezaWeb.Models.LibraryFineCalculatorModel
+
+@{
+    ViewBag.Title = "Para Cezası Hesaplama";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <h2>@ViewBag.Title</h2>
+        @using (Html.BeginForm())
+        {
+            <div>
+                @Html.LabelFor(m => m.BorrowedDate)
+                @Html.TextBoxFor(m => m.BorrowedDate, "{0:yyyy-MM-dd}", new { type = "date" })
+            </div>
+            <div>
+                @Html.LabelFor(m => m.ReturnedDate)
+                @Html.TextBoxFor(m => m.ReturnedDate, "{0:yyyy-MM-dd}", new { type = "date" })
+            </div>
+            <div>
+                @Html.LabelFor(m => m.Country)
+                @Html.DropDownListFor(m => m.Country, new SelectList(new List<SelectListItem>
+                {
+                    new SelectListItem { Text = "İspanya", Value = "Spain" },
+                    new SelectListItem { Text = "Almanya", Value = "Germany" }
+                }, "Value", "Text"))
+            </div>
+            <div>
+                <button type="submit">Hesapla</button>
+                <button type="button" class="btn btn-success">Sıfırla</button>
+            </div>
+        }
+
+        @if (Model != null)
+        {
+            <div class="result">
+                <p>İş Günleri Sayısı: @Model.BusinessDays</p>
+                <p>Para Cezası: @Model.FineAmount.ToString("C")</p>
+            </div>
+        }
+    </div>
+</body>
+</html>

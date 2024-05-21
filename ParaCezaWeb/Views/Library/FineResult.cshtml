@@ -1,0 +1,26 @@
+﻿@model ParaCezaWeb.Models.LibraryFineCalculatorModel
+
+@{
+    ViewBag.Title = "Para Cezası Sonucu";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Content/site.css" />
+</head>
+<body>
+    <div class="container">
+        <h2>@ViewBag.Title</h2>
+        <div class="result">
+            <p>İş Günleri Sayısı: @Model.BusinessDays</p>
+            <p>Para Cezası: @Model.FineAmount.ToString("C")</p>
+        </div>
+        <a href="@Url.Action("CalculateFine", "Library")" class="button">Yeni Hesaplama Yap</a>
+    </div>
+</body>
+</html>
